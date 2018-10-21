@@ -31,7 +31,7 @@ var server = http.createServer(function(request, response){
 
 
 
-  console.log('李玉兵说：得到的HTTP 路径\n' + path)
+  console.log('JoseLiSay：得到的HTTP 路径\n' + path)
   if(path == '/'){
 	response.setHeader('Content-Type','text/html;charset=utf-8')	
   	response.write('<!DOCTYPE>\n<html>'+

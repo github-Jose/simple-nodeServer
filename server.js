@@ -39,12 +39,15 @@ var server = http.createServer(function (request, response){
     if (Math.random() > 0.5) {
       fs.writeFileSync('./db', newAmount)
 
-      response.setHeader('Content-Type', 'image/png')
+      response.setHeader('Content-Type', 'application/javascript')
       response.statusCode = 200
-      response.write(fs.readFileSync('./dog.jpg'))
+      response.write(`
+        amount.innerText = amount.innerText - 1
+      `)
+      response.end()
     } else {
       response.statusCode = 400
-      response.write('fail')
+      // response.write('alert("fail")')
     }
     response.end()
   } else {

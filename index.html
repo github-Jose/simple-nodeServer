@@ -8,9 +8,10 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <!-- <p id="test" class="title">你好</p> -->
-  <h5>您的账户余额是 <span id="amount">100</span></h5>
-  <button id="button">付款1块钱</button>
+  <h5>您的账户余额是 <span id="amount">&&&amount&&&</span></h5>
+  <form action="/pay" method="POST">
+    <input type="submit" value="付款1块钱">
+  </form>
 </body>
 <script src="./main.js"></script>
 </html>

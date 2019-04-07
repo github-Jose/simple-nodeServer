@@ -17,7 +17,9 @@ var server = http.createServer(function (request, response){
 
   // 从这里开始看
   if (path === '/') {
-    var string = fs.readFileSync('./index.html', 'utf-8')
+    var string = fs.readFileSync('./index.html', 'utf8')
+    var amount = fs.readFileSync('./db', 'utf8')
+    string = string.replace('&&&amount&&&', amount)
     response.setHeader('Content-Type', 'text/html;chartset=utf-8')
     response.write(string)
     response.end()
@@ -30,6 +32,16 @@ var server = http.createServer(function (request, response){
     var string = fs.readFileSync('./main.js', 'utf-8')
     response.setHeader('Content-Type', 'application/javascript')
     response.write(string)
+    response.end()
+  } else if (path === '/pay' && method.toUpperCase() === 'POST') {
+    var amount = fs.readFileSync('./db', 'utf8') // 100
+    var newAmount = amount - 1
+    if (Math.random() > 0.5) {
+      fs.writeFileSync('./db', newAmount)
+      response.write('success')
+    } else {
+      response.write('fail')
+    }
     response.end()
   } else {
     response.statusCode = 404

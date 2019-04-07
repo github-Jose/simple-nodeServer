@@ -7,7 +7,11 @@ button.addEventListener('click', (e)=>{
   let script = document.createElement('script')
   script.src='/pay'
   document.body.appendChild(script)
-  script.onerror = function () {
+  script.onload = function (e) {
+    e.currentTarget.remove()
+  }
+  script.onerror = function (e) {
     console.log('fail')
+    e.currentTarget.remove()
   }
 })
